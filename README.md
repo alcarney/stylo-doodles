@@ -1,5 +1,7 @@
 # stylo-doodles
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/alcarney/stylo-doodles/master)
+
 This repository contains a number of example images/animations that have been
 made with the python package [stylo](https://github.com/alcarney/stylo).
 
@@ -12,6 +14,9 @@ python packages installed
 
 - stylo
 - jupyter
+
+Don't want to install anything? Just click on [this](https://mybinder.org/v2/gh/alcarney/stylo-doodles/master)
+link to try the examples live in your browser!
 
 ## Contributing
 
