@@ -9,7 +9,7 @@
     <div class="gallery">
       {% for image in images %}
       <div class="gallery-image">
-        <img src="{{ image.url }}" />
+        <img src="{{ image.urls.thumb }}" />
       </div>
       {% endfor %}
     </div>

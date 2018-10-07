@@ -1,2 +1,4 @@
 stylo
 jupyter
+jinja2
+tqdm

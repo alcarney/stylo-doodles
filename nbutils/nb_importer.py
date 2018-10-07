@@ -64,6 +64,7 @@ class NotebookLoader(object):
         module.__file__ = path
         module.__loader__ = self
         module.__dict__['get_ipython'] = get_ipython
+        print("-------------------> Adding module {}".format(fullname))
         sys.modules[fullname] = module
 
         # Further magic to enable magics to work as expected.
