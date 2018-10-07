@@ -16,7 +16,7 @@ from webutils.templates import render_template
 
 # Site config
 
-BASE_URL = "stylo-doodles/"
+BASE_URL = "/stylo-doodles/"
 
 if len(sys.argv) > 1 and sys.argv[1] == "local":
     BASE_URL = "/"
