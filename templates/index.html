@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stylo Doodles</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="gallery">
+      {% for image in images %}
+      <div class="gallery-image">
+        <img src="{{ image.url }}" />
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
