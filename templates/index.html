@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
+    <header>
+        <h2 class="site-title">
+            Stylo Doodles
+        </h2>
+    </header>
     <div class="gallery">
       {% for image in images %}
       <div class="gallery-image">
@@ -13,5 +18,8 @@
       </div>
       {% endfor %}
     </div>
+    <footer>
+        <p>Last Built: {{ last_build }}</p>
+    </footer>
   </body>
 </html>
