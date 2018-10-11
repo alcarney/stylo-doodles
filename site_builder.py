@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 from webutils.static import copy_static
 from webutils.files import to_filename
-from webutils.templates import render_template
+from webutils.templates import render_template, render_markdown
 
 
 # Site config
@@ -28,6 +28,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "local":
 
 GALLERY_TEMPLATE = "index.html"
 IMAGE_TEMPLATE = "image.html"
+PAGE_TEMPLATE = "page.html"
 
 NB_MODULE = "notebooks"
 STATIC_PATH = "static/"
@@ -60,6 +61,19 @@ def highlight_source_code(source):
     return highlight(source, PythonLexer(), HtmlFormatter())
 
 
+def render_page(name, text, context):
+    """Render a standard page written in markdown."""
+
+    local_context = {
+        "last_build": context['last_build'],
+        "page": {
+            "content": render_markdown(text)
+        }
+    }
+
+    with open(os.path.join(SITE_PATH, name + ".html"), 'w') as f:
+        f.write(render_template(PAGE_TEMPLATE, local_context))
+
 
 def render_image_page(info, context):
     """Render the detailed info page for an image."""
@@ -77,6 +91,19 @@ def render_image_page(info, context):
 
     with open(os.path.join(IMAGE_PATH, filename), 'w') as f:
         f.write(render_template(IMAGE_TEMPLATE, local_context))
+
+
+def render_pages(context):
+    """Render any markdown pages in /pages"""
+
+    pagedir = Path("pages/")
+
+    for mdfile in pagedir.glob("*.md"):
+
+        with open(mdfile) as f:
+            text = f.read()
+
+        render_page(mdfile.stem, text, context)
 
 
 def render_images(notebooks, context):
@@ -134,6 +161,9 @@ def main():
         "baseurl": BASE_URL,
         "images": []
     }
+
+    # Render any markdown pages.
+    render_pages(context)
 
     # Discover notebook examples to handle
     notebooks = discover_notebooks()

@@ -3,3 +3,4 @@ jupyter
 jinja2
 tqdm
 pygments
+markdown

@@ -21,6 +21,10 @@ header {
   text-decoration: none;
 }
 
+.site-title a:hover {
+  text-decoration: underline;
+}
+
 footer {
   border-top: solid 1px #eee;
   text-align: center;
@@ -28,6 +32,28 @@ footer {
 
 footer p {
   color: #888;
+}
+
+.nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  float: left;
+  padding: 22px;
+  list-style: none
+}
+
+.nav a {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
 }
 
 /* -- Gallery Page -- */
@@ -69,6 +95,7 @@ footer p {
   margin: 0;
 }
 
+.page h1,
 .info-title {
   text-align: right;
   border-bottom: solid 1px #b30000;
@@ -85,6 +112,12 @@ footer p {
 
 .info-author:hover {
   font-style: italic;
+}
+
+/* -- Page --*/
+.page {
+  padding: 20px;
+  max-width: 800px;
 }
 
 .two-col {
@@ -120,5 +153,14 @@ footer p {
 
   .full-image {
     max-width: 100%;
+  }
+
+  header.two-col {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav li {
+    float: none;
   }
 }
