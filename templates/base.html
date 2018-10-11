@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stylo Doodles</title>
+
+    <link rel="stylesheet" href="{{ baseurl }}css/main.css" />
+    <link rel="stylesheet" href="{{ baseurl }}css/highlight.css" />
+  </head>
+  <body>
+    <header>
+        <h2 class="site-title">
+            <a href="{{ baseurl }}">Stylo Doodles</a>
+        </h2>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <p>Last Built: {{ last_build }}</p>
+    </footer>
+  </body>
+</html>
+

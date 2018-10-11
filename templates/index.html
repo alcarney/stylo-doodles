@@ -1,25 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Stylo Doodles</title>
-
-    <link rel="stylesheet" href="css/main.css" />
-  </head>
-  <body>
-    <header>
-        <h2 class="site-title">
-            Stylo Doodles
-        </h2>
-    </header>
+{% extends "base.html" %}
+{% block content %}
     <div class="gallery">
       {% for image in images %}
       <div class="gallery-image">
-        <img src="{{ image.urls.thumb }}" />
+        <a href="{{ baseurl }}image/{{ image.filename }}.html">
+            <img src="{{ image.urls.thumb }}" />
+        </a>
       </div>
       {% endfor %}
     </div>
-    <footer>
-        <p>Last Built: {{ last_build }}</p>
-    </footer>
-  </body>
-</html>
+{% endblock %}

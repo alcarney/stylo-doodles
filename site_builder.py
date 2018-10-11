@@ -7,6 +7,10 @@ import sys
 from datetime import datetime
 from importlib import import_module
 from pathlib import Path
+
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
 from tqdm import tqdm
 
 from webutils.static import copy_static
@@ -21,12 +25,15 @@ BASE_URL = "/stylo-doodles/"
 if len(sys.argv) > 1 and sys.argv[1] == "local":
     BASE_URL = "/"
 
-GALLERY_TEMPLATE = "templates/index.html"
+GALLERY_TEMPLATE = "index.html"
+IMAGE_TEMPLATE = "image.html"
+
 NB_MODULE = "notebooks"
 STATIC_PATH = "static/"
 
 SITE_PATH = "_site/"
 IMG_PATH = os.path.join(SITE_PATH, "img/")
+IMAGE_PATH = os.path.join(SITE_PATH, "image/")
 THUMBS_PATH = os.path.join(SITE_PATH, "thumbs/")
 
 
@@ -47,6 +54,30 @@ def discover_notebooks():
     return notebooks
 
 
+def highlight_source_code(source):
+    """Given python source code, highlight it."""
+    return highlight(source, PythonLexer(), HtmlFormatter())
+
+
+
+def render_image_page(info, context):
+    """Render the detailed info page for an image."""
+
+    local_context = {
+        "last_build": context['last_build'],
+        "baseurl": BASE_URL,
+        "info": info
+    }
+
+    filename = to_filename(info['title']) + ".html"
+
+    if not os.path.isdir(IMAGE_PATH):
+        os.mkdir(IMAGE_PATH)
+
+    with open(os.path.join(IMAGE_PATH, filename), 'w') as f:
+        f.write(render_template(IMAGE_TEMPLATE, local_context))
+
+
 def render_images(notebooks, context):
     """Render the images needed and update the context."""
 
@@ -60,15 +91,20 @@ def render_images(notebooks, context):
 
     for info, image in tqdm(notebooks):
 
-        filename = to_filename(info['title']) + ".png"
+        name = to_filename(info['title'])
+        filename = name + ".png"
         imgname = os.path.join(IMG_PATH, filename)
         thumbname = os.path.join(THUMBS_PATH, filename)
 
-        # Update the info to include the filepaths
+        # Update the info to include extra information for the templates
+        info['filename'] = name
+        info['src'] = highlight_source_code(info['src'])
         info['urls'] = {
             "img": imgname.replace(SITE_PATH, BASE_URL),
             "thumb": thumbname.replace(SITE_PATH, BASE_URL)
         }
+
+        render_image_page(info, context)
 
         width, height = info['dimensions']
         thumb_w, thumb_h = width // 4, height // 4
@@ -77,7 +113,6 @@ def render_images(notebooks, context):
         image(thumb_w, thumb_h, filename=thumbname)
 
         context['images'].append(info)
-
 
 
 def main():
@@ -90,15 +125,17 @@ def main():
 
     # Create context for the templates
     context = {
-        "images": [],
-        "last_build": datetime.now().strftime("%a %d %B %Y -- %H:%M:%S")
+        "last_build": datetime.now().strftime("%a %d %B %Y -- %H:%M:%S"),
+        "baseurl": BASE_URL,
+        "images": []
     }
 
     # Discover notebook examples to handle
     notebooks = discover_notebooks()
+
     render_images(notebooks, context)
 
-    # Render the webpage
+    # Render the main webpage
     with open(os.path.join(SITE_PATH, "index.html"), 'w') as f:
         f.write(render_template(GALLERY_TEMPLATE, context))
 

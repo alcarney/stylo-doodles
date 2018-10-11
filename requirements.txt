@@ -2,3 +2,4 @@ stylo
 jupyter
 jinja2
 tqdm
+pygments

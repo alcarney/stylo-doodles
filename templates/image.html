@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="image-detail">
+    <div class="full-image">
+        <img src="{{ info.urls.img }}" />
+    </div>
+    <div class="image-info">
+        <div class="info-title">
+            <h1>{{ info.title }}</h1>
+        </div>
+        <div class="image-code">
+            <div class="info-title">
+                <h3>Source Code</h3>
+            </div>
+
+            {{info.src | safe}}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

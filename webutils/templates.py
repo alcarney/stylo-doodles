@@ -1,8 +1,10 @@
-from jinja2 import Template
+from jinja2 import Environment, FileSystemLoader
 
-def render_template(template_path, context):
+TEMPLATE_ENV = Environment(
+    loader = FileSystemLoader("templates")
+)
 
-    with open(template_path) as f:
-        template = Template(f.read())
+def render_template(name, context):
 
+    template = TEMPLATE_ENV.get_template(name)
     return template.render(context)

@@ -71,17 +71,29 @@ class NotebookLoader(object):
         save_user_ns = self.shell.user_ns
         self.shell.user_ns = module.__dict__
 
+        # We'll extract the source code make it available inside the info object.
+        source_code = []
+        cell_count = 0
+
         # Now we go through and execute all the cells.
         try:
             for cell in nb.cells:
                 if cell.cell_type == 'code':
-                    # If the cell has magics, we need to translate into real Python.
                     src = cell.source
-                    code = self.shell.input_transformer_manager.transform_cell(src)
 
+                    if cell_count > 0:
+                        source_code.append(src)
+
+                    # If the cell has magics, we need to translate into real Python.
+                    code = self.shell.input_transformer_manager.transform_cell(src)
                     exec(code, module.__dict__)
+
+                    cell_count += 1
         finally:
             self.shell.user_ns = save_user_ns
+
+
+        module.__dict__['info']['src'] = "\n\n".join(source_code)
 
         return module
 
