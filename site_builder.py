@@ -1,6 +1,7 @@
 """This controls the main build process of the gallery site."""
 import nbutils  # This does *magic* to allow us to import notebooks as modules.
 import os
+import random
 import shutil
 import sys
 
@@ -88,6 +89,9 @@ def render_images(notebooks, context):
 
     if not os.path.isdir(THUMBS_PATH):
         os.mkdir(THUMBS_PATH)
+
+    # We want to mix things up.
+    random.shuffle(notebooks)
 
     for info, image in tqdm(notebooks):
 
