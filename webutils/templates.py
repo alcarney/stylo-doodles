@@ -13,4 +13,4 @@ def render_template(name, context):
 
 def render_markdown(text):
     """Given some markdown text, render it as html."""
-    return markdown.markdown(text)
+    return markdown.markdown(text, extensions=['extra'])

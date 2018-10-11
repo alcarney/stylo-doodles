@@ -106,6 +106,7 @@ footer p {
   margin-bottom: 20px;
 }
 
+.page a,
 .info-author {
   color: #b30000;
 }
@@ -143,6 +144,16 @@ footer p {
 /* -- Code --*/
 .highlight pre {
   overflow-x: auto;
+}
+
+.page pre {
+  background: #ddd;
+}
+
+li code,
+p code {
+  padding: 2px;
+  background: #ddd;
 }
 
 /* -- Mobile -- */

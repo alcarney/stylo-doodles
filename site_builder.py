@@ -66,6 +66,7 @@ def render_page(name, text, context):
 
     local_context = {
         "last_build": context['last_build'],
+        "baseurl": context['baseurl'],
         "page": {
             "content": render_markdown(text)
         }
