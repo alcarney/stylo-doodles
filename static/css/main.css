@@ -63,16 +63,35 @@ footer p {
   padding: 20px;
 }
 
-.info-title {
-  border-bottom: solid 1px #b30000;
-}
-
-.info-title h1,
-.info-title h2,
-.info-title h3 {
+.image-info h1,
+.image-info h2,
+.image-info h3 {
   margin: 0;
 }
 
+.info-title {
+  text-align: right;
+  border-bottom: solid 1px #b30000;
+  margin-bottom: 20px;
+}
+
+.image-details {
+  margin-bottom: 20px;
+}
+
+.info-author {
+  color: #b30000;
+}
+
+.info-author:hover {
+  font-style: italic;
+}
+
+.two-col {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 /* -- Img tags -- */
 
 .gallery-image img {

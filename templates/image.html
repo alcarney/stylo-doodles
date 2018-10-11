@@ -5,16 +5,42 @@
         <img src="{{ info.urls.img }}" />
     </div>
     <div class="image-info">
+
         <div class="info-title">
             <h1>{{ info.title }}</h1>
         </div>
+
+        <div class="image-details">
+          <div class="info-title">
+            <h2>Details</h2>
+          </div>
+
+          <div class="two-col">
+            <h3>Author:</h3>
+            <span>{{ info.author }}</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Github:</h3>
+            <a class="info-author"
+               href="https://github.com/{{info.github_username}}">
+               {{info.github_username}}
+            </a>
+
+          </div>
+
+          <div class="two-col">
+            <h3>Stylo Version:</h3>
+            <span>{{info.stylo_version}}</span>
+          </div>
+        </div>
+
         <div class="image-code">
             <div class="info-title">
-                <h3>Source Code</h3>
+                <h2>Source Code</h2>
             </div>
 
             {{info.src | safe}}
-
         </div>
     </div>
 </div>

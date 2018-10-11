@@ -125,7 +125,7 @@ def main():
 
     # Create context for the templates
     context = {
-        "last_build": datetime.now().strftime("%a %d %B %Y -- %H:%M:%S"),
+        "last_build": datetime.now().strftime("%d %B %Y -- %H:%M:%S"),
         "baseurl": BASE_URL,
         "images": []
     }
