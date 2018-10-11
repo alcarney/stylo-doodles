@@ -101,7 +101,8 @@ footer p {
 }
 
 .full-image img {
-  object-fit: cover;
+  position: sticky;
+  top: 10px;
   width: 100%;
   max-height: 100%;
 }

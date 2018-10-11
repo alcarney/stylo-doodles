@@ -1,11 +1,12 @@
-# stylo-doodles
+# Stylo Doodles
 
+[![Build Status](https://travis-ci.org/alcarney/stylo-doodles.svg?branch=master)](https://travis-ci.org/alcarney/stylo-doodles)
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/alcarney/stylo-doodles/master)
 
-This repository contains a number of example images/animations that have been
-made with the python package [stylo](https://github.com/alcarney/stylo).
-
-The plan is to eventually compile these into a static example gallery website.
+This repository is the backend implementaion of the
+[Stylo Doodles](https://alcarney.github.io/stylo-doodles) example gallery and
+community website for [stylo](https://github.com/alcarney/stylo) the Python
+package for creating images and animations with a little bit of mathematics.
 
 ## Requirements
 

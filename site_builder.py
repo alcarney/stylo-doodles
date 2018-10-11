@@ -102,6 +102,7 @@ def render_images(notebooks, context):
 
         # Update the info to include extra information for the templates
         info['filename'] = name
+        info['size'] = "{0} x {1}".format(*info['dimensions'])
         info['src'] = highlight_source_code(info['src'])
         info['urls'] = {
             "img": imgname.replace(SITE_PATH, BASE_URL),
