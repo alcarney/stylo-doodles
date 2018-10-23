@@ -21,6 +21,7 @@ from webutils.templates import render_template, render_markdown
 
 # Site config
 
+PUBLISHED_URL = "https://alcarney.github.io/stylo-doodles"
 BASE_URL = "/stylo-doodles/"
 
 if len(sys.argv) > 1 and sys.argv[1] == "local":
@@ -47,7 +48,7 @@ def discover_notebooks():
 
     for nbpath in nbdir.glob("*.ipynb"):
 
-        pkg_name = NB_MODULE + '.' + str(nbpath.stem)
+        pkg_name = NB_MODULE + "." + str(nbpath.stem)
         print("Importing {}".format(pkg_name))
 
         nb = import_module(pkg_name)
@@ -65,14 +66,12 @@ def render_page(name, text, context):
     """Render a standard page written in markdown."""
 
     local_context = {
-        "last_build": context['last_build'],
-        "baseurl": context['baseurl'],
-        "page": {
-            "content": render_markdown(text)
-        }
+        "last_build": context["last_build"],
+        "baseurl": context["baseurl"],
+        "page": {"content": render_markdown(text)},
     }
 
-    with open(os.path.join(SITE_PATH, name + ".html"), 'w') as f:
+    with open(os.path.join(SITE_PATH, name + ".html"), "w") as f:
         f.write(render_template(PAGE_TEMPLATE, local_context))
 
 
@@ -80,17 +79,17 @@ def render_image_page(info, context):
     """Render the detailed info page for an image."""
 
     local_context = {
-        "last_build": context['last_build'],
+        "last_build": context["last_build"],
         "baseurl": BASE_URL,
-        "info": info
+        "info": info,
     }
 
-    filename = to_filename(info['title']) + ".html"
+    filename = to_filename(info["title"]) + ".html"
 
     if not os.path.isdir(IMAGE_PATH):
         os.mkdir(IMAGE_PATH)
 
-    with open(os.path.join(IMAGE_PATH, filename), 'w') as f:
+    with open(os.path.join(IMAGE_PATH, filename), "w") as f:
         f.write(render_template(IMAGE_TEMPLATE, local_context))
 
 
@@ -123,34 +122,35 @@ def render_images(notebooks, context):
 
     for info, image in tqdm(notebooks):
 
-        name = to_filename(info['title'])
+        name = to_filename(info["title"])
         filename = name + ".png"
         imgname = os.path.join(IMG_PATH, filename)
         thumbname = os.path.join(THUMBS_PATH, filename)
 
         # Update the info to include extra information for the templates
-        info['filename'] = name
-        info['size'] = "{0} x {1}".format(*info['dimensions'])
-        info['src'] = highlight_source_code(info['src'])
-        info['urls'] = {
+        info["filename"] = name
+        info["size"] = "{0} x {1}".format(*info["dimensions"])
+        info["src"] = highlight_source_code(info["src"])
+        info["urls"] = {
             "img": imgname.replace(SITE_PATH, BASE_URL),
-            "thumb": thumbname.replace(SITE_PATH, BASE_URL)
+            "thumb": thumbname.replace(SITE_PATH, BASE_URL),
+            "base": PUBLISHED_URL,
         }
 
         render_image_page(info, context)
 
-        width, height = info['dimensions']
+        width, height = info["dimensions"]
         thumb_w, thumb_h = width // 4, height // 4
 
         image(width, height, filename=imgname)
         image(thumb_w, thumb_h, filename=thumbname)
 
-        context['images'].append(info)
+        context["images"].append(info)
 
 
 def main():
 
-    if os.path.isdir(os.path.join('.', SITE_PATH)):
+    if os.path.isdir(os.path.join(".", SITE_PATH)):
         shutil.rmtree(SITE_PATH)
 
     # Create the _site directory and copy static files.
@@ -160,7 +160,7 @@ def main():
     context = {
         "last_build": datetime.now().strftime("%d %B %Y -- %H:%M:%S"),
         "baseurl": BASE_URL,
-        "images": []
+        "images": [],
     }
 
     # Render any markdown pages.
@@ -172,9 +172,9 @@ def main():
     render_images(notebooks, context)
 
     # Render the main webpage
-    with open(os.path.join(SITE_PATH, "index.html"), 'w') as f:
+    with open(os.path.join(SITE_PATH, "index.html"), "w") as f:
         f.write(render_template(GALLERY_TEMPLATE, context))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

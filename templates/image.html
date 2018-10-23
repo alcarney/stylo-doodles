@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+
+{% block extrahead %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{info.title}} by {{info.author}} | stylo-doodles">
+<meta name="twitter:image" content="{{info.urls.base}}{{info.urls.img}}">
+<meta name="twitter:image:alt" content="{{info.title}}">
+{% endblock %}
+
 {% block content %}
 <div class="image-detail">
     <div class="full-image">
