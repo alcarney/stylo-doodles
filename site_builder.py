@@ -21,7 +21,7 @@ from webutils.templates import render_template, render_markdown
 
 # Site config
 
-PUBLISHED_URL = "https://alcarney.github.io/stylo-doodles"
+PUBLISHED_URL = "https://alcarney.github.io"
 BASE_URL = "/stylo-doodles/"
 
 if len(sys.argv) > 1 and sys.argv[1] == "local":
