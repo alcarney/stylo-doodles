@@ -63,6 +63,7 @@ footer p {
   grid-gap: 2px;
   grid-template-columns: repeat(auto-fill, 250px);
   grid-template-rows: repeat(auto-fill, 250px);
+  grid-auto-rows: 250px;
 }
 
 .gallery-image {
@@ -157,6 +158,14 @@ p code {
 }
 
 /* -- Mobile -- */
+@media (max-width: 510px) {
+  .gallery {
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vw;
+    grid-auto-rows: 100vw;
+  }
+}
+
 @media (max-width: 1000px) {
   .image-detail {
     flex-direction: column;
