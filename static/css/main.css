@@ -160,9 +160,9 @@ p code {
 /* -- Mobile -- */
 @media (max-width: 510px) {
   .gallery {
-    grid-template-columns: 100vw;
-    grid-template-rows: 100vw;
-    grid-auto-rows: 100vw;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 50vw;
+    grid-auto-rows: 50vw;
   }
 }
 
