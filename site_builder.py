@@ -46,10 +46,12 @@ def discover_notebooks():
     nbdir = Path(NB_MODULE + "/")
     notebooks = []
 
+    print("Loading notebooks...")
+
     for nbpath in nbdir.glob("*.ipynb"):
 
         pkg_name = NB_MODULE + "." + str(nbpath.stem)
-        print("Importing {}".format(pkg_name))
+        print("\t-> {}".format(nbpath.stem))
 
         nb = import_module(pkg_name)
         notebooks.append((nb.info, nb.image))
@@ -168,6 +170,8 @@ def main():
 
     # Discover notebook examples to handle
     notebooks = discover_notebooks()
+
+    print("Found {} notebooks\n".format(len(notebooks)))
 
     render_images(notebooks, context)
 

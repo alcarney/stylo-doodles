@@ -19,11 +19,10 @@ from nbformat import read
 def find_notebook(fullname, path=None):
     """I think converts a module name a.b.c into a filepath a/b/c.ipynb"""
 
-    print(fullname, path)
-    name = fullname.rsplit('.', 1)[-1]
+    name = fullname.rsplit(".", 1)[-1]
 
     if not path:
-        path = ['']
+        path = [""]
 
     for d in path:
         nb_path = os.path.join(d, name + ".ipynb")
@@ -54,17 +53,14 @@ class NotebookLoader(object):
 
         path = find_notebook(fullname, self.path)
 
-        print("Loading code from {}".format(path))
-
-        with io.open(path, 'r', encoding="utf-8") as f:
+        with io.open(path, "r", encoding="utf-8") as f:
             nb = read(f, 4)
 
         # Here we do magic and create a module
         module = types.ModuleType(fullname)
         module.__file__ = path
         module.__loader__ = self
-        module.__dict__['get_ipython'] = get_ipython
-        print("-------------------> Adding module {}".format(fullname))
+        module.__dict__["get_ipython"] = get_ipython
         sys.modules[fullname] = module
 
         # Further magic to enable magics to work as expected.
@@ -78,7 +74,7 @@ class NotebookLoader(object):
         # Now we go through and execute all the cells.
         try:
             for cell in nb.cells:
-                if cell.cell_type == 'code':
+                if cell.cell_type == "code":
                     src = cell.source
 
                     if cell_count > 0:
@@ -92,10 +88,10 @@ class NotebookLoader(object):
         finally:
             self.shell.user_ns = save_user_ns
 
-
-        module.__dict__['info']['src'] = "\n\n".join(source_code)
+        module.__dict__["info"]["src"] = "\n\n".join(source_code)
 
         return module
+
 
 class NotebookFinder(object):
     """The last piece of the puzzle and our entry point into the import system (I
@@ -122,4 +118,3 @@ class NotebookFinder(object):
             self.loaders[key] = NotebookLoader(path)
 
         return self.loaders[key]
-
