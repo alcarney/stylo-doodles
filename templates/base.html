@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="{{ baseurl }}css/main.css" />
     <link rel="stylesheet" href="{{ baseurl }}css/highlight.css" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
   </head>
   <body>
     <header class="two-col">
@@ -32,7 +34,7 @@
     {% block content %}
     {% endblock %}
     <footer>
-        <p>Last Built: {{ last_build }}</p>
+        <p>Last Built: {{ last_build }} -- Site Version: {{ version }}</p>
     </footer>
   </body>
 </html>
