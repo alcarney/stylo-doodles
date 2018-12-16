@@ -46,15 +46,26 @@
             <h3>Stylo Version:</h3>
             <span>{{info.stylo_version}}</span>
           </div>
+
+          <div class="two-col">
+              <span id="show-source" class="button">Show Source</span>
+              <span id="show-notes" class="button">Show Notes</span>
+              <span id="show-both" class="button selected">Show Both</span>
+          </div>
         </div>
 
+        <div class="info-title">
+          <h2>Source</h2>
+        </div>
         <div class="image-code">
-            <div class="info-title">
-                <h2>Source Code</h2>
+           {% for cell in info.cells %}
+            <div class="{{cell.cell_type}}">
+                {{cell.source | safe}}
             </div>
+           {% endfor %}
 
-            {{info.src | safe}}
         </div>
     </div>
 </div>
+<script src="{{ baseurl }}js/image.js" async></script>
 {% endblock %}

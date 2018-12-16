@@ -84,7 +84,7 @@ footer p {
 }
 
 .full-image {
-  max-width: 60%;
+  max-width: 40%;
 }
 
 .image-info {
@@ -117,6 +117,34 @@ footer p {
   font-style: italic;
 }
 
+.is-hidden {
+  display: none;
+}
+
+.button {
+  margin: 5px;
+  margin-top: 10px;
+  padding: 20px;
+  background: #ddd;
+  border-radius: 2px;
+  box-shadow: 1px 1px #ddd;
+}
+
+.button:hover {
+  background: #eee;
+  box-shadow: 2px 2px #ddd;
+}
+
+.button:active {
+  box-shadow: inset 2px 2px #ddd;
+}
+
+.button.selected {
+  background: #b30000;
+  color: white;
+  font-weight: 600;
+}
+
 /* -- Page --*/
 .page {
   padding: 20px;
@@ -146,6 +174,8 @@ footer p {
 /* -- Code --*/
 .highlight pre {
   overflow-x: auto;
+  padding: 10px;
+  border: solid 1px #aaa;
 }
 
 .page pre {

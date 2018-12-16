@@ -89,6 +89,7 @@ class NotebookLoader(object):
             self.shell.user_ns = save_user_ns
 
         module.__dict__["info"]["src"] = "\n\n".join(source_code)
+        module.__dict__["info"]["cells"] = nb.cells[1:]
 
         return module
 

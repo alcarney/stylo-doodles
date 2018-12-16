@@ -19,6 +19,8 @@ from webutils.files import to_filename
 from webutils.templates import render_template, render_markdown
 
 
+__version__ = "0.2"
+
 # Site config
 
 PUBLISHED_URL = "https://alcarney.github.io"
@@ -46,15 +48,17 @@ def discover_notebooks():
     nbdir = Path(NB_MODULE + "/")
     notebooks = []
 
-    print("Loading notebooks...")
+    print("Loading notebooks")
 
     for nbpath in nbdir.glob("*.ipynb"):
 
         pkg_name = NB_MODULE + "." + str(nbpath.stem)
-        print("\t-> {}".format(nbpath.stem))
+        print(".", end='', flush=True)
 
         nb = import_module(pkg_name)
         notebooks.append((nb.info, nb.image))
+
+    print()
 
     return notebooks
 
@@ -82,6 +86,7 @@ def render_image_page(info, context):
 
     local_context = {
         "last_build": context["last_build"],
+        "version": context["version"],
         "baseurl": BASE_URL,
         "info": info,
     }
@@ -132,12 +137,19 @@ def render_images(notebooks, context):
         # Update the info to include extra information for the templates
         info["filename"] = name
         info["size"] = "{0} x {1}".format(*info["dimensions"])
-        info["src"] = highlight_source_code(info["src"])
         info["urls"] = {
             "img": imgname.replace(SITE_PATH, BASE_URL),
             "thumb": thumbname.replace(SITE_PATH, BASE_URL),
             "base": PUBLISHED_URL,
         }
+
+        for cell in info["cells"]:
+
+            if cell.cell_type == "code":
+                cell.source = highlight_source_code(cell.source)
+
+            if cell.cell_type == "markdown":
+                cell.source = render_markdown(cell.source)
 
         render_image_page(info, context)
 
@@ -161,6 +173,7 @@ def main():
     # Create context for the templates
     context = {
         "last_build": datetime.now().strftime("%d %B %Y -- %H:%M:%S"),
+        "version": __version__,
         "baseurl": BASE_URL,
         "images": [],
     }
@@ -178,6 +191,8 @@ def main():
     # Render the main webpage
     with open(os.path.join(SITE_PATH, "index.html"), "w") as f:
         f.write(render_template(GALLERY_TEMPLATE, context))
+
+    print("Done!")
 
 
 if __name__ == "__main__":
