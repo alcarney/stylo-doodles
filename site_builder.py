@@ -4,6 +4,7 @@ import os
 import random
 import shutil
 import sys
+import traceback
 
 from datetime import datetime
 from importlib import import_module
@@ -42,6 +43,25 @@ IMAGE_PATH = os.path.join(SITE_PATH, "image/")
 THUMBS_PATH = os.path.join(SITE_PATH, "thumbs/")
 
 
+class UserContext:
+    def __init__(self, pkg):
+        self.pkg = pkg
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, err_type, err, tback):
+
+        if err is None:
+            return
+
+        print()
+        traceback.print_exception(err_type, err, tback)
+        print("\nUnable to load module: {}".format(self.pkg))
+
+        sys.exit(1)
+
+
 def discover_notebooks():
     """Discover and import notebook files, return a list of (info, image) pairs."""
 
@@ -53,10 +73,11 @@ def discover_notebooks():
     for nbpath in nbdir.glob("*.ipynb"):
 
         pkg_name = NB_MODULE + "." + str(nbpath.stem)
-        print(".", end='', flush=True)
+        print(".", end="", flush=True)
 
-        nb = import_module(pkg_name)
-        notebooks.append((nb.info, nb.image))
+        with UserContext(pkg_name):
+            nb = import_module(pkg_name)
+            notebooks.append((nb.info, nb.image))
 
     print()
 
