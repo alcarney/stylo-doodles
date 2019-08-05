@@ -1,7 +1,7 @@
 """Import notebooks as regular python modules.
 
 There is a lot of magic going here as we are going to override the way python imports
-code. This is definitely my own creation, I have simply modified the code found on the
+code. This is definitely not my own creation, I have simply modified the code found on the
 page linked below for my own use.
 
 https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Importing%20Notebooks.html
