@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stickman by Alex Carney | stylo-doodles">
+<meta name="twitter:image" content="https://alcarney.github.io/stylo-doodles/img/stickman.png">
+<meta name="twitter:image:alt" content="Stickman">
+
+
+    <title>Stylo Doodles</title>
+
+    <link rel="stylesheet" href="/stylo-doodles/css/main.css" />
+    <link rel="stylesheet" href="/stylo-doodles/css/highlight.css" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+    <header class="two-col">
+        <h2 class="site-title">
+            <a href="/stylo-doodles/">Stylo Doodles</a>
+        </h2>
+        <div class="nav">
+          <ul>
+            <li><a href="/stylo-doodles/submit.html">Submit</a></li>
+            <li><a href="/stylo-doodles/about.html">About</a></li>
+          </ul>
+          <a href="https://github.com/alcarney/stylo-doodles">
+              <img style="position: absolute; top: 0; right: 0; border: 0;"
+                   src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+                   alt="Fork me on GitHub">
+          </a>
+        </div>
+    </header>
+    
+<div class="image-detail">
+    <div class="full-image">
+        <img src="/stylo-doodles/img/stickman.png" />
+    </div>
+    <div class="image-info">
+
+        <div class="info-title">
+            <h1>Stickman</h1>
+        </div>
+
+        <div class="image-details">
+          <div class="info-title">
+            <h2>Details</h2>
+          </div>
+
+          <div class="two-col">
+            <h3>Author:</h3>
+            <span>Alex Carney</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Github:</h3>
+            <a class="info-author"
+               href="https://github.com/alcarney">
+               alcarney
+            </a>
+
+          </div>
+
+          <div class="two-col">
+            <h3>Dimensions:</h3>
+            <span>1920 x 1080</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Stylo Version:</h3>
+            <span>0.7.0</span>
+          </div>
+
+          <div class="two-col">
+              <span id="show-source" class="button">Show Source</span>
+              <span id="show-notes" class="button">Show Notes</span>
+              <span id="show-both" class="button selected">Show Both</span>
+          </div>
+        </div>
+
+        <div class="info-title">
+          <h2>Source</h2>
+        </div>
+        <div class="image-code">
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+
+<span class="kn">from</span> <span class="nn">stylo.domain.transform</span> <span class="kn">import</span> <span class="n">translate</span><span class="p">,</span> <span class="n">rotate</span>
+<span class="kn">from</span> <span class="nn">stylo.color</span> <span class="kn">import</span> <span class="n">FillColor</span>
+<span class="kn">from</span> <span class="nn">stylo.shape</span> <span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Line</span>
+<span class="kn">from</span> <span class="nn">stylo.image</span> <span class="kn">import</span> <span class="n">LayeredImage</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">black</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;000000&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Stickman</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head_x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head_y</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head_size</span> <span class="o">=</span> <span class="o">.</span><span class="mi">3</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">pt</span> <span class="o">=</span> <span class="mf">0.02</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_length</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leg_length</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">arm_length</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_arm_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span> <span class="o">-</span> <span class="n">pi</span><span class="o">/</span><span class="mi">8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_arm_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span> <span class="o">+</span> <span class="n">pi</span><span class="o">/</span><span class="mi">8</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_leg_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span> <span class="o">+</span> <span class="n">pi</span><span class="o">/</span><span class="mi">8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_leg_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span> <span class="o">-</span> <span class="n">pi</span><span class="o">/</span><span class="mi">8</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculate</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">_calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">body_end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_size</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arm_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_size</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">body_length</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">neck</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_size</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">),</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_size</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_end</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">),</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_end</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">arm</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">arm_start</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">),</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">arm_start</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">leg_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_end</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leg_end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_end</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">leg_length</span>
+        
+        
+    <span class="k">def</span> <span class="nf">_construct_head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        
+        <span class="n">head</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">head_size</span><span class="p">,</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span> \
+             <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_y</span><span class="p">)</span>
+        
+        <span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_construct_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        
+        <span class="n">body</span> <span class="o">=</span> <span class="n">Line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body_length</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="o">*</span><span class="mf">1.03</span><span class="p">)</span> \
+             <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body_angle</span><span class="p">)</span> \
+             <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neck</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">neck</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        
+        
+        <span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_construct_legs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        
+        <span class="n">left_leg</span> <span class="o">=</span> <span class="n">Line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">leg_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="p">)</span> \
+                 <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left_leg_angle</span><span class="p">)</span> \
+                 <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        
+        <span class="n">right_leg</span> <span class="o">=</span> <span class="n">Line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">leg_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="p">)</span> \
+                  <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_leg_angle</span><span class="p">)</span> \
+                  <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        
+        
+        <span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">left_leg</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">right_leg</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_construct_arms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        
+        <span class="n">left_arm</span> <span class="o">=</span> <span class="n">Line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arm_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="p">)</span> \
+                 <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left_arm_angle</span><span class="p">)</span> \
+                 <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arm</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">arm</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        
+        <span class="n">right_arm</span> <span class="o">=</span> <span class="n">Line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arm_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="p">)</span> \
+                  <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_arm_angle</span><span class="p">)</span> \
+                  <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arm</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">arm</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+            
+        <span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">left_arm</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">right_arm</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_head</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_body</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_legs</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_arms</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        
+        <span class="k">pass</span>
+    
+<span class="n">stickman</span> <span class="o">=</span> <span class="n">Stickman</span><span class="p">()</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">LayeredImage</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">stickman</span><span class="o">.</span><span class="n">construct</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+
+        </div>
+    </div>
+</div>
+<script src="/stylo-doodles/js/image.js" async></script>
+
+    <footer>
+        <p>Last Built: 08 December 2019 -- 22:58:07 -- Site Version: 0.2</p>
+    </footer>
+  </body>
+</html>

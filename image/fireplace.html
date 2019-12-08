@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fireplace by Alex Carney | stylo-doodles">
+<meta name="twitter:image" content="https://alcarney.github.io/stylo-doodles/img/fireplace.png">
+<meta name="twitter:image:alt" content="Fireplace">
+
+
+    <title>Stylo Doodles</title>
+
+    <link rel="stylesheet" href="/stylo-doodles/css/main.css" />
+    <link rel="stylesheet" href="/stylo-doodles/css/highlight.css" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+    <header class="two-col">
+        <h2 class="site-title">
+            <a href="/stylo-doodles/">Stylo Doodles</a>
+        </h2>
+        <div class="nav">
+          <ul>
+            <li><a href="/stylo-doodles/submit.html">Submit</a></li>
+            <li><a href="/stylo-doodles/about.html">About</a></li>
+          </ul>
+          <a href="https://github.com/alcarney/stylo-doodles">
+              <img style="position: absolute; top: 0; right: 0; border: 0;"
+                   src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+                   alt="Fork me on GitHub">
+          </a>
+        </div>
+    </header>
+    
+<div class="image-detail">
+    <div class="full-image">
+        <img src="/stylo-doodles/img/fireplace.png" />
+    </div>
+    <div class="image-info">
+
+        <div class="info-title">
+            <h1>Fireplace</h1>
+        </div>
+
+        <div class="image-details">
+          <div class="info-title">
+            <h2>Details</h2>
+          </div>
+
+          <div class="two-col">
+            <h3>Author:</h3>
+            <span>Alex Carney</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Github:</h3>
+            <a class="info-author"
+               href="https://github.com/alcarney">
+               alcarney
+            </a>
+
+          </div>
+
+          <div class="two-col">
+            <h3>Dimensions:</h3>
+            <span>1920 x 1080</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Stylo Version:</h3>
+            <span>0.9.0</span>
+          </div>
+
+          <div class="two-col">
+              <span id="show-source" class="button">Show Source</span>
+              <span id="show-notes" class="button">Show Notes</span>
+              <span id="show-both" class="button selected">Show Both</span>
+          </div>
+        </div>
+
+        <div class="info-title">
+          <h2>Source</h2>
+        </div>
+        <div class="image-code">
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">stylo.domain.transform</span> <span class="kn">import</span> <span class="n">translate</span>
+<span class="kn">from</span> <span class="nn">stylo.color</span> <span class="kn">import</span> <span class="n">FillColor</span>
+<span class="kn">from</span> <span class="nn">stylo.shape</span> <span class="kn">import</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Shape</span><span class="p">,</span> <span class="n">Circle</span>
+<span class="kn">from</span> <span class="nn">stylo.image</span> <span class="kn">import</span> <span class="n">LayeredImage</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">black</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">()</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;ee0000&quot;</span><span class="p">)</span>
+<span class="n">darkred</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;660000&quot;</span><span class="p">)</span>
+<span class="n">silvery</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;dddddd&quot;</span><span class="p">)</span>
+<span class="n">light_brown</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;884400&quot;</span><span class="p">)</span>
+<span class="n">dark_brown</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;663300&quot;</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Brick</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invert</span> <span class="o">=</span> <span class="n">invert</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="k">def</span> <span class="nf">brick</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">layers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">%</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.02</span>
+            <span class="n">odd_layers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y</span><span class="p">)</span> <span class="o">%</span> <span class="mf">0.4</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.2</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">invert</span><span class="p">:</span>
+                <span class="n">odd_layers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">odd_layers</span><span class="p">)</span>
+            
+            <span class="n">splits</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mf">0.45</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.02</span>
+            <span class="n">split1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">splits</span><span class="p">,</span> <span class="n">odd_layers</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="n">split1</span><span class="p">)</span>
+    
+        <span class="k">return</span> <span class="n">brick</span>
+    
+<span class="k">class</span> <span class="nc">Arch</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pt</span><span class="o">=</span><span class="mf">0.03</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pt</span> <span class="o">=</span> <span class="n">pt</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">arc</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pt</span><span class="p">)</span>
+        <span class="n">pt2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pt</span> <span class="o">/</span> <span class="mi">2</span>
+        
+        <span class="k">def</span> <span class="nf">arch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            
+            <span class="n">top</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">arc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">),</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            
+            <span class="n">sides</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">pt2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">pt2</span><span class="p">)</span>
+            <span class="n">sides</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">sides</span><span class="p">,</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">sides</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">arch</span>
+    
+<span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">rectangle</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">base</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+            
+            <span class="n">cutouts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.02</span><span class="p">)</span>
+            <span class="n">cutouts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">cutouts</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">cutouts</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">base</span>
+    
+<span class="k">class</span> <span class="nc">Surround</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invert</span> <span class="o">=</span> <span class="n">invert</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">2.75</span><span class="p">)</span>
+        <span class="n">groove</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.75</span><span class="p">)</span>
+        <span class="n">circle1</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">pt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+        <span class="n">circle2</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">pt</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">surround</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">cutout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">groove</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">),</span> <span class="n">circle1</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+            <span class="n">cutout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">cutout</span><span class="p">,</span> <span class="n">circle2</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+            
+            <span class="n">side</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">cutout</span><span class="p">))</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">invert</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">side</span><span class="p">))</span>
+            
+            <span class="k">return</span> <span class="n">side</span>
+            
+        <span class="k">return</span> <span class="n">surround</span>
+    
+<span class="k">class</span> <span class="nc">Lintel</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invert</span> <span class="o">=</span> <span class="n">invert</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">2.75</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+        <span class="n">groove</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">2.25</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">lintel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">cutout</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">groove</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+                        
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">invert</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">cutout</span><span class="p">))</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">cutout</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">lintel</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">arch_y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.65</span> 
+
+<span class="n">brick</span> <span class="o">=</span> <span class="n">Brick</span><span class="p">()</span>
+<span class="n">brick2</span> <span class="o">=</span> <span class="n">Brick</span><span class="p">(</span><span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">grate</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">2.75</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">2.25</span><span class="p">)</span>
+<span class="n">mantel</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">3.95</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">arch</span> <span class="o">=</span> <span class="n">Arch</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">arch_y</span><span class="p">)</span>
+<span class="n">arch2</span> <span class="o">=</span> <span class="n">Arch</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">arch_y</span><span class="p">)</span>
+<span class="n">arch3</span> <span class="o">=</span> <span class="n">Arch</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">pt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">arch_y</span><span class="p">)</span>
+<span class="n">arch4</span> <span class="o">=</span> <span class="n">Arch</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">arch_y</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="n">Base</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">arch_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">surround</span> <span class="o">=</span> <span class="n">Surround</span><span class="p">()</span>
+<span class="n">surround2</span> <span class="o">=</span> <span class="n">Surround</span><span class="p">(</span><span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">lintel</span> <span class="o">=</span> <span class="n">Lintel</span><span class="p">()</span>
+<span class="n">lintel2</span> <span class="o">=</span> <span class="n">Lintel</span><span class="p">(</span><span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">LayeredImage</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s2">&quot;666666&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">brick</span><span class="p">,</span> <span class="n">darkred</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">brick2</span><span class="p">,</span> <span class="n">darkred</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">grate</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span> <span class="n">silvery</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">arch2</span><span class="p">,</span> <span class="n">silvery</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">arch3</span><span class="p">,</span> <span class="n">silvery</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">arch4</span><span class="p">,</span> <span class="n">silvery</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">silvery</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">lintel</span><span class="p">,</span> <span class="n">light_brown</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">lintel2</span><span class="p">,</span> <span class="n">dark_brown</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">mantel</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">surround</span><span class="p">,</span> <span class="n">light_brown</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">surround2</span><span class="p">,</span> <span class="n">dark_brown</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span>
+</pre></div>
+
+            </div>
+           
+
+        </div>
+    </div>
+</div>
+<script src="/stylo-doodles/js/image.js" async></script>
+
+    <footer>
+        <p>Last Built: 08 December 2019 -- 22:58:07 -- Site Version: 0.2</p>
+    </footer>
+  </body>
+</html>

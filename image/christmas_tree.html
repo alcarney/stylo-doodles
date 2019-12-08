@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Christmas Tree by Alex Carney | stylo-doodles">
+<meta name="twitter:image" content="https://alcarney.github.io/stylo-doodles/img/christmas_tree.png">
+<meta name="twitter:image:alt" content="Christmas Tree">
+
+
+    <title>Stylo Doodles</title>
+
+    <link rel="stylesheet" href="/stylo-doodles/css/main.css" />
+    <link rel="stylesheet" href="/stylo-doodles/css/highlight.css" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+    <header class="two-col">
+        <h2 class="site-title">
+            <a href="/stylo-doodles/">Stylo Doodles</a>
+        </h2>
+        <div class="nav">
+          <ul>
+            <li><a href="/stylo-doodles/submit.html">Submit</a></li>
+            <li><a href="/stylo-doodles/about.html">About</a></li>
+          </ul>
+          <a href="https://github.com/alcarney/stylo-doodles">
+              <img style="position: absolute; top: 0; right: 0; border: 0;"
+                   src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+                   alt="Fork me on GitHub">
+          </a>
+        </div>
+    </header>
+    
+<div class="image-detail">
+    <div class="full-image">
+        <img src="/stylo-doodles/img/christmas_tree.png" />
+    </div>
+    <div class="image-info">
+
+        <div class="info-title">
+            <h1>Christmas Tree</h1>
+        </div>
+
+        <div class="image-details">
+          <div class="info-title">
+            <h2>Details</h2>
+          </div>
+
+          <div class="two-col">
+            <h3>Author:</h3>
+            <span>Alex Carney</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Github:</h3>
+            <a class="info-author"
+               href="https://github.com/alcarney">
+               alcarney
+            </a>
+
+          </div>
+
+          <div class="two-col">
+            <h3>Dimensions:</h3>
+            <span>1080 x 1080</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Stylo Version:</h3>
+            <span>0.9.0</span>
+          </div>
+
+          <div class="two-col">
+              <span id="show-source" class="button">Show Source</span>
+              <span id="show-notes" class="button">Show Notes</span>
+              <span id="show-both" class="button selected">Show Both</span>
+          </div>
+        </div>
+
+        <div class="info-title">
+          <h2>Source</h2>
+        </div>
+        <div class="image-code">
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">stylo.domain.transform</span> <span class="kn">import</span> <span class="n">translate</span><span class="p">,</span> <span class="n">rotate</span>
+<span class="kn">from</span> <span class="nn">stylo.color</span> <span class="kn">import</span> <span class="n">FillColor</span>
+<span class="kn">from</span> <span class="nn">stylo.shape</span> <span class="kn">import</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Triangle</span><span class="p">,</span> <span class="n">Shape</span><span class="p">,</span> <span class="n">Circle</span>
+<span class="kn">from</span> <span class="nn">stylo.image</span> <span class="kn">import</span> <span class="n">LayeredImage</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">darkgreen</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;00aa00&quot;</span><span class="p">)</span>
+<span class="n">brown</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;8b4513&quot;</span><span class="p">)</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;dd0000&quot;</span><span class="p">)</span>
+<span class="n">yellow</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;ffee00&quot;</span><span class="p">)</span>
+<span class="n">silver</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;dddddd&quot;</span><span class="p">)</span>
+<span class="n">blue</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;00ddff&quot;</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pot</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="k">def</span> <span class="nf">pot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            <span class="n">y_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">)</span>
+            <span class="n">x_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.23</span> <span class="o">+</span> <span class="n">y</span><span class="o">/</span><span class="mi">4</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">y_bounds</span><span class="p">,</span> <span class="n">x_bounds</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">pot</span>
+    
+<span class="k">class</span> <span class="nc">Star</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">))</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">))</span>
+        
+        <span class="k">def</span> <span class="nf">star</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">t1</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">),</span> <span class="n">t2</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.03</span> <span class="o">-</span> <span class="n">y</span><span class="o">/</span><span class="mi">4</span>
+            
+            <span class="n">ys</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mf">0.1</span>
+            
+            <span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">ys</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">ys</span>  <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">star</span>
+    
+<span class="k">class</span> <span class="nc">Present</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invert</span> <span class="o">=</span> <span class="n">invert</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span> <span class="o">=</span> <span class="n">ratio</span>
+    
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">h</span> <span class="o">=</span> <span class="mf">0.25</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span>
+        
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">present</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+            
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+            
+            <span class="n">box</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+            
+            <span class="n">ribbon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.02</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">invert</span><span class="p">:</span>
+                <span class="n">ribbon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">ribbon</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">ribbon</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">present</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">tree_base</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="o">-</span><span class="mf">0.45</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">tree_mid</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="o">-</span><span class="mf">0.35</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.35</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">tree_top</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">trunk</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">pot_rim</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">pot</span> <span class="o">=</span> <span class="n">Pot</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="n">star</span> <span class="o">=</span> <span class="n">Star</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">)</span>
+
+<span class="n">bauble</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble1</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble2</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble3</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble4</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble5</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble6</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble7</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble8</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble9</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble10</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble11</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble12</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.14</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble13</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.34</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble14</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bauble15</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">present1</span> <span class="o">=</span> <span class="n">Present</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.05</span><span class="p">)</span>
+<span class="n">present1_r</span> <span class="o">=</span> <span class="n">Present</span><span class="p">(</span><span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.05</span><span class="p">)</span>
+
+<span class="n">present2</span> <span class="o">=</span> <span class="n">Present</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.95</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">present2_r</span> <span class="o">=</span> <span class="n">Present</span><span class="p">(</span><span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.95</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="n">present3</span> <span class="o">=</span> <span class="n">Present</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.25</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.32</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">present3_r</span> <span class="o">=</span> <span class="n">Present</span><span class="p">(</span><span class="n">ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.25</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.32</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.02</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">LayeredImage</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s2">&quot;0000aa&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">trunk</span><span class="p">,</span> <span class="n">brown</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">tree_base</span><span class="p">,</span> <span class="n">darkgreen</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">tree_mid</span><span class="p">,</span> <span class="n">darkgreen</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">tree_top</span><span class="p">,</span> <span class="n">darkgreen</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">pot_rim</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">pot</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">star</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble1</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble2</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble3</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble4</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble5</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble6</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble7</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble8</span><span class="p">,</span> <span class="n">silver</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble9</span><span class="p">,</span> <span class="n">silver</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble10</span><span class="p">,</span> <span class="n">silver</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble11</span><span class="p">,</span> <span class="n">silver</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble12</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble13</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble14</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">bauble15</span><span class="p">,</span> <span class="n">blue</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">present1</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">present1_r</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">present2</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">present2_r</span><span class="p">,</span> <span class="n">yellow</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">present3</span><span class="p">,</span> <span class="n">darkgreen</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">present3_r</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+
+<span class="n">image</span><span class="p">(</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">1080</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span>
+</pre></div>
+
+            </div>
+           
+
+        </div>
+    </div>
+</div>
+<script src="/stylo-doodles/js/image.js" async></script>
+
+    <footer>
+        <p>Last Built: 08 December 2019 -- 22:58:07 -- Site Version: 0.2</p>
+    </footer>
+  </body>
+</html>

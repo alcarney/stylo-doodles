@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jack-O-Lantern by Alex Carney | stylo-doodles">
+<meta name="twitter:image" content="https://alcarney.github.io/stylo-doodles/img/jack_o_lantern.png">
+<meta name="twitter:image:alt" content="Jack-O-Lantern">
+
+
+    <title>Stylo Doodles</title>
+
+    <link rel="stylesheet" href="/stylo-doodles/css/main.css" />
+    <link rel="stylesheet" href="/stylo-doodles/css/highlight.css" />
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+    <header class="two-col">
+        <h2 class="site-title">
+            <a href="/stylo-doodles/">Stylo Doodles</a>
+        </h2>
+        <div class="nav">
+          <ul>
+            <li><a href="/stylo-doodles/submit.html">Submit</a></li>
+            <li><a href="/stylo-doodles/about.html">About</a></li>
+          </ul>
+          <a href="https://github.com/alcarney/stylo-doodles">
+              <img style="position: absolute; top: 0; right: 0; border: 0;"
+                   src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+                   alt="Fork me on GitHub">
+          </a>
+        </div>
+    </header>
+    
+<div class="image-detail">
+    <div class="full-image">
+        <img src="/stylo-doodles/img/jack_o_lantern.png" />
+    </div>
+    <div class="image-info">
+
+        <div class="info-title">
+            <h1>Jack-O-Lantern</h1>
+        </div>
+
+        <div class="image-details">
+          <div class="info-title">
+            <h2>Details</h2>
+          </div>
+
+          <div class="two-col">
+            <h3>Author:</h3>
+            <span>Alex Carney</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Github:</h3>
+            <a class="info-author"
+               href="https://github.com/alcarney">
+               alcarney
+            </a>
+
+          </div>
+
+          <div class="two-col">
+            <h3>Dimensions:</h3>
+            <span>1920 x 1080</span>
+          </div>
+
+          <div class="two-col">
+            <h3>Stylo Version:</h3>
+            <span>0.6.0</span>
+          </div>
+
+          <div class="two-col">
+              <span id="show-source" class="button">Show Source</span>
+              <span id="show-notes" class="button">Show Notes</span>
+              <span id="show-both" class="button selected">Show Both</span>
+          </div>
+        </div>
+
+        <div class="info-title">
+          <h2>Source</h2>
+        </div>
+        <div class="image-code">
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stylo.image</span> <span class="kn">import</span> <span class="n">LayeredImage</span>
+<span class="kn">from</span> <span class="nn">stylo.shape</span> <span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Ellipse</span><span class="p">,</span> <span class="n">Triangle</span><span class="p">,</span> <span class="n">Rectangle</span>
+<span class="kn">from</span> <span class="nn">stylo.color</span> <span class="kn">import</span> <span class="n">FillColor</span>
+<span class="kn">from</span> <span class="nn">stylo.domain.transform</span> <span class="kn">import</span> <span class="n">translate</span><span class="p">,</span> <span class="n">rotate</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sqrt</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">orange</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;ffaa00&quot;</span><span class="p">)</span>
+<span class="n">darker_orange</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;dd9900&quot;</span><span class="p">)</span>
+<span class="n">black</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;000000&quot;</span><span class="p">)</span>
+<span class="n">green</span> <span class="o">=</span> <span class="n">FillColor</span><span class="p">(</span><span class="s2">&quot;00dd00&quot;</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_segment</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Ellipse</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">middle</span> <span class="o">=</span> <span class="n">make_segment</span><span class="p">()</span>
+<span class="n">middle_outline</span> <span class="o">=</span> <span class="n">make_segment</span><span class="p">(</span><span class="mf">0.825</span><span class="p">)</span>
+
+<span class="n">left</span> <span class="o">=</span> <span class="n">make_segment</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">left_outline</span> <span class="o">=</span> <span class="n">make_segment</span><span class="p">(</span><span class="mf">0.825</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">right</span> <span class="o">=</span> <span class="n">make_segment</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">right_outline</span> <span class="o">=</span> <span class="n">make_segment</span><span class="p">(</span><span class="mf">0.825</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">left_eye</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
+<span class="n">right_eye</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">translate</span><span class="p">(</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">nose</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">))</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">cutouts</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cutouts</span> <span class="o">|=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">cutouts</span> <span class="o">|=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.475</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">cutouts</span> <span class="o">|=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">mouth</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-.</span><span class="mi">3</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">cutouts</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">stem</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span> <span class="o">+</span> <span class="n">offset</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> \
+     <span class="o">&amp;</span> <span class="o">~</span><span class="n">Circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span> <span class="o">+</span> <span class="n">offset</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">LayeredImage</span><span class="p">()</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">stem</span><span class="p">,</span> <span class="n">green</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">left_outline</span><span class="p">,</span> <span class="n">darker_orange</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">right_outline</span><span class="p">,</span> <span class="n">darker_orange</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">orange</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">orange</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">middle_outline</span><span class="p">,</span> <span class="n">darker_orange</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span> <span class="n">orange</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">left_eye</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">right_eye</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">nose</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+
+<span class="n">image</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">mouth</span><span class="p">,</span> <span class="n">black</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+           
+            <div class="code">
+                <div class="highlight"><pre><span></span>
+</pre></div>
+
+            </div>
+           
+
+        </div>
+    </div>
+</div>
+<script src="/stylo-doodles/js/image.js" async></script>
+
+    <footer>
+        <p>Last Built: 08 December 2019 -- 22:58:07 -- Site Version: 0.2</p>
+    </footer>
+  </body>
+</html>
