@@ -1,7 +1,10 @@
 # Stylo Doodles
 
-[![Build Status](https://travis-ci.org/alcarney/stylo-doodles.svg?branch=master)](https://travis-ci.org/alcarney/stylo-doodles)
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/alcarney/stylo-doodles/master)
+**This project is no longer active. It has been migrated into the main `arlunio` repository**
+
+[Gallery](https://www.arlun.io/gallery)
+
+[Repo](https://github.com/swyddfa/arlunio)
 
 This repository is the backend implementaion of the
 [Stylo Doodles](https://alcarney.github.io/stylo-doodles) example gallery and
